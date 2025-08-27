@@ -22,6 +22,7 @@ This script has the same function as ```preprocess_training.py```, preprocessing
 ## Task 4: predict.py
 This script extracts the model that was trained in the second task and predicts on the test set. It saves the output predictions as ```predictions.csv``` in the ```results``` folder. 
 
+# Run The Application
 Assuming the user already has Docker installed, run the following commands in order:
 ```
 - docker compose down -v --remove-orphans   # Cleans up any existing containers, networks, and volumes  
@@ -38,5 +39,3 @@ Assuming the user already has Docker installed, run the following commands in or
 Once the containers are up, you can access the Airflow UI at http://localhost:8080. The username is march and password is madness. 
 
 <img width="1506" height="810" alt="Image" src="https://github.com/user-attachments/assets/d3ace428-37f2-4e07-931c-0b611d3aefc0" />
-
-This pipeline starts with the csv file 'MM_KP' in the 'data' folder. 
