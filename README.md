@@ -2,24 +2,24 @@
 
 There are four tasks in this pipeline, all falling in the folder 'preprocess_train_predict_scripts'. The folder 'dags', defined by the file 'instructions.py' inside of it, directs Apache Airflow to run the DAG accordingly. Currently, the scheduled runs are set to None ('schedule_interval=None'), but could be easily changed to occur every X seconds, minutes, hours, etc. 
 
-## 'docker-compose.yaml'
+## docker-compose.yaml
 Defines how Airflow runs in containers by configuring shared settings, volumes, and services—airflow-init (DB/user setup), airflow-webserver (UI), airflow-scheduler (task execution), and airflow-cli (command line access).
 
-## 'Dockerfile'
+## Dockerfile
 Builds a custom Airflow image by installing dependencies from requirements.txt and baking in the DAG and preprocessing scripts so they’re always available in the container.
 
 # Below are the four tasks:
 
-## Task 1: 'preprocess_training.py'
+## Task 1: preprocess_training.py
 This script does all the preprocessing for the raw data file 'MM_KP', pulled directly from KenPom. This includes all KenPom metrics for every year back to its creation in 2002. This cleans up the file, does feature engineering to create new columns like 'Tourney Seed' or 'Win Percentage', and manually fills the target column 'Winner'. The column's values are filled out so that every win in the tournament is an increase of 1/6. Teams that won no games have a value of 0, one game (Round of 32) have a value of 1/6, ..., five games have a value of 5/6 (Finals Runner-Up), and six games have a value of 1 (Champion). The file also has code (which is currently commented out) that displays correlations between features and targets, along with covariance between features. In a separate Jupyter Notebook, those values have been computed, and the training/testing dataset uses only features that have a correlation magnitude with the target of 0.1 or higher. For any pair of features with a correlation magnitude at or above 0.8, I dropped the one that has the weaker correlation with the target variable. Until next year's March Madness bracket is announced, 2002-2024 is used for training, and 2025 is used as the test. 
 
-## Task 2: 'train.py'
+## Task 2: train.py
 This script trains and tunes an XGBoost model on March Madness data using RandomizedSearchCV, validates it with repeated k-fold cross-validation, evaluates performance metrics, saves the best model with joblib, and verifies the saved model by reloading it and making predictions. It also scales all features accordingly. Using joblib, the model is also saved in the 'models' folder. 
 
-## Task 3: 'preprocess_test.py'
+## Task 3: preprocess_test.py
 This script has the same function as 'preprocess_training.py', preprocessing only for 2025. 
 
-## Task 4: 'test.py'
+## Task 4: predict.py
 This script extracts the model that was trained in the second task and predicts on the test set. It saves the output predictions as 'predictions.csv' in the 'results' folder. 
 
 Assuming the user already has Docker installed, run the following commands in order:
