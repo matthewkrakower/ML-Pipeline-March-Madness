@@ -1,19 +1,11 @@
-FROM python:3.6-slim-stretch
+FROM python:3.11-slim
 
-RUN apt update
-RUN apt install -y python3-dev gcc
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gfortran \
+    && rm -rf /var/lib/apt/lists/*
 
-ADD requirements.txt requirements.txt
-ADD export.pkl export.pkl
-ADD app.py app.py
+WORKDIR /app
 
-# Install required libraries
-RUN pip install -r requirements.txt
-
-# Run it once to trigger resnet download
-RUN python app.py
-
-EXPOSE 8008
-
-# Start the server
-CMD ["python", "app.py", "serve"]
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
