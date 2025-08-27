@@ -2,10 +2,10 @@
 
 There are four tasks in this pipeline, all falling in the folder 'preprocess_train_predict_scripts'. The folder 'dags', defined by the file 'instructions.py' inside of it, directs Apache Airflow to run the DAG accordingly. Currently, the scheduled runs are set to None ('schedule_interval=None'), but could be easily changed to occur every X seconds, minutes, hours, etc. 
 
-# 'docker-compose.yaml'
+## 'docker-compose.yaml'
 Defines how Airflow runs in containers by configuring shared settings, volumes, and services—airflow-init (DB/user setup), airflow-webserver (UI), airflow-scheduler (task execution), and airflow-cli (command line access).
 
-# 'Dockerfile'
+## 'Dockerfile'
 Builds a custom Airflow image by installing dependencies from requirements.txt and baking in the DAG and preprocessing scripts so they’re always available in the container.
 
 # Below are the four tasks:
