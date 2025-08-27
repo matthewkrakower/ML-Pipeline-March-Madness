@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-mmkp = pd.read_csv('/data/MM_KP_2025I.csv') #CHANGE THIS
+mmkp = pd.read_csv('/opt/airflow/data/MM_KP.csv') #CHANGE THIS
 #renaming columns correctly
 mmkp.rename(columns={'Unnamed: 6': 'ORtg Rank'}, inplace=True)
 mmkp.rename(columns={'Unnamed: 8': 'DRtg Rank'}, inplace=True)
@@ -853,32 +853,32 @@ mmkp['Team_Name'] = pd.factorize(mmkp['Team'])[0]
 mmkp['Conf'] = pd.factorize(mmkp['Conf'])[0]
 
 #correlation matrix, getting rid of correlated features with lower correlation to target as we go
-cm = mmkp.drop(columns=['Winner', 'Team', 'ORtgSOS Rank', 'Losses', 'DRtgSOS Rank', 
-                        'Luck Rank', 'NetRtgSOS Rank', 'NetRtg Rank', 'DRtg Rank',
-                        'ORtgSOS', 'ORtg Rank', 'DRtgSOS', 'Tourney Seed', 'AdjT Rank',
-                        'NetRtgSOSNC', 'ORtg', 'NetRtgSOS']).corr()
+# cm = mmkp.drop(columns=['Winner', 'Team', 'ORtgSOS Rank', 'Losses', 'DRtgSOS Rank', 
+#                         'Luck Rank', 'NetRtgSOS Rank', 'NetRtg Rank', 'DRtg Rank',
+#                         'ORtgSOS', 'ORtg Rank', 'DRtgSOS', 'Tourney Seed', 'AdjT Rank',
+#                         'NetRtgSOSNC', 'ORtg', 'NetRtgSOS']).corr()
 
-#correlation to target
-target_corr = mmkp.drop(columns='Team').corr()['Winner'].drop('Winner')
+# #correlation to target
+# target_corr = mmkp.drop(columns='Team').corr()['Winner'].drop('Winner')
 
-#trying to make it into a table so i can see each variable, their corr with target variable, and corr with each other
-pairs = cm.unstack().reset_index()
-pairs.columns = ['Variable 1', 'Variable 2', 'Correlation']
+# #trying to make it into a table so i can see each variable, their corr with target variable, and corr with each other
+# pairs = cm.unstack().reset_index()
+# pairs.columns = ['Variable 1', 'Variable 2', 'Correlation']
 
-#drop duplicates
-pairs = pairs.drop_duplicates(subset=['Correlation'])
+# #drop duplicates
+# pairs = pairs.drop_duplicates(subset=['Correlation'])
 
-#filter correlations with magnitude >= 0.8
-greaterthanNine = pairs[pairs['Correlation'].abs() >= 0.8]
+# #filter correlations with magnitude >= 0.8
+# greaterthanNine = pairs[pairs['Correlation'].abs() >= 0.8]
 
-#correlation to target for each
-greaterthanNine['Var1 -Target'] = greaterthanNine['Variable 1'].map(target_corr)
-greaterthanNine['Var2 C-Target'] = greaterthanNine['Variable 2'].map(target_corr)
+# #correlation to target for each
+# greaterthanNine['Var1 -Target'] = greaterthanNine['Variable 1'].map(target_corr)
+# greaterthanNine['Var2 C-Target'] = greaterthanNine['Variable 2'].map(target_corr)
 
-#sort by magnitude
-greaterthanNine = greaterthanNine.sort_values(by='Correlation', key=np.abs, ascending=False)
+# #sort by magnitude
+# greaterthanNine = greaterthanNine.sort_values(by='Correlation', key=np.abs, ascending=False)
 
-greaterthanNine = pd.DataFrame(greaterthanNine[['Variable 1', 'Var1 C-Target', 'Variable 2', 'Var2 C-Target', 'Correlation']])
+# greaterthanNine = pd.DataFrame(greaterthanNine[['Variable 1', 'Var1 C-Target', 'Variable 2', 'Var2 C-Target', 'Correlation']])
 
 #all of these are above 0.9
 #based on this, drop:
@@ -901,5 +901,5 @@ greaterthanNine = pd.DataFrame(greaterthanNine[['Variable 1', 'Var1 C-Target', '
 #NetRtgSOS (keep NetRtg)
 
 #save the cleaned dataframe to CSV
-output_path = "data/mmkp_preprocessed_train.csv"
+output_path = '/opt/airflow/data/mmkp_preprocessed_train.csv'
 mmkp.to_csv(output_path, index=False)

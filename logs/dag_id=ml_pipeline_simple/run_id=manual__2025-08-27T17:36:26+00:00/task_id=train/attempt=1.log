@@ -1,0 +1,26 @@
+[2025-08-27T17:36:46.037+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-08-27T17:36:46.041+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline_simple.train manual__2025-08-27T17:36:26+00:00 [queued]>
+[2025-08-27T17:36:46.042+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline_simple.train manual__2025-08-27T17:36:26+00:00 [queued]>
+[2025-08-27T17:36:46.043+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-08-27T17:36:46.047+0000] {taskinstance.py:2888} INFO - Executing <Task(BashOperator): train> on 2025-08-27 17:36:26+00:00
+[2025-08-27T17:36:46.048+0000] {standard_task_runner.py:72} INFO - Started process 145 to run task
+[2025-08-27T17:36:46.050+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'ml_pipeline_simple', 'train', 'manual__2025-08-27T17:36:26+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/instructions.py', '--cfg-path', '/tmp/tmpauk7v1xx']
+[2025-08-27T17:36:46.051+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask train
+[2025-08-27T17:36:46.063+0000] {task_command.py:467} INFO - Running <TaskInstance: ml_pipeline_simple.train manual__2025-08-27T17:36:26+00:00 [running]> on host 73d5ca51174b
+[2025-08-27T17:36:46.080+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ml_pipeline_simple' AIRFLOW_CTX_TASK_ID='train' AIRFLOW_CTX_EXECUTION_DATE='2025-08-27T17:36:26+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-08-27T17:36:26+00:00'
+[2025-08-27T17:36:46.080+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-08-27T17:36:46.086+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-08-27T17:36:46.086+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/airflow/scripts/train.py']
+[2025-08-27T17:36:46.089+0000] {subprocess.py:86} INFO - Output:
+[2025-08-27T17:36:46.637+0000] {subprocess.py:93} INFO - Fitting 5 folds for each of 30 candidates, totalling 150 fits
+[2025-08-27T17:36:51.974+0000] {subprocess.py:93} INFO - Best Parameters: {'subsample': 0.6, 'reg_lambda': 2, 'reg_alpha': 0, 'n_estimators': 300, 'max_depth': 3, 'learning_rate': 0.05, 'gamma': 0, 'colsample_bytree': 1.0}
+[2025-08-27T17:36:51.975+0000] {subprocess.py:93} INFO - Mean MSE: 0.017414 with Std of 0.002231
+[2025-08-27T17:36:51.975+0000] {subprocess.py:93} INFO - Mean MAE: 0.091897
+[2025-08-27T17:36:51.975+0000] {subprocess.py:93} INFO - Mean RMSE: 0.131690
+[2025-08-27T17:36:51.983+0000] {subprocess.py:93} INFO - Mean R²: 0.640821
+[2025-08-27T17:36:52.236+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-08-27T17:36:52.243+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-08-27T17:36:52.243+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=ml_pipeline_simple, task_id=train, run_id=manual__2025-08-27T17:36:26+00:00, execution_date=20250827T173626, start_date=20250827T173646, end_date=20250827T173652
+[2025-08-27T17:36:52.276+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-08-27T17:36:52.282+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-08-27T17:36:52.289+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -10,7 +10,7 @@ from xgboost import XGBRegressor
 import joblib
 
 
-mmkp = pd.read_csv("data/mmkp_preprocessed_train.csv")
+mmkp = pd.read_csv("/opt/airflow/data/mmkp_preprocessed_train.csv")
 
 X = mmkp.drop(columns=['Winner', 'Team', 'ORtgSOS Rank', 'Losses', 'DRtgSOS Rank', 
                         'Luck Rank', 'NetRtgSOS Rank', 'NetRtg Rank', 'DRtg Rank',
@@ -79,8 +79,8 @@ print(f"Mean R²: {np.mean(r2_scores):.6f}")
 #2.	A low std means stability: Your model’s performance doesn’t vary much across splits. So, the mean MSE is capturing a consistent performance signal — not one driven by outliers or unlucky folds.
 #3.	Cross-validation mean approximates true error: With enough folds and repeats, the mean MSE approximates how your model would perform on unseen data.
 
-joblib.dump(model, "/models/xgb_model.pkl")
+joblib.dump(model, "/opt/airflow/models/xgb_model.pkl")
 
-loaded_model = joblib.load("/models/xgb_model.pkl")
+loaded_model = joblib.load("/opt/airflow/models/xgb_model.pkl")
 
 preds_loaded = loaded_model.predict(X_scaled)

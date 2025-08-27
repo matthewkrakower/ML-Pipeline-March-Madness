@@ -21,22 +21,22 @@ with DAG(
 
     preprocess_train = BashOperator(
         task_id="preprocess_train",
-        bash_command="python scripts/preprocess_training.py"
+        bash_command="python /opt/airflow/scripts/preprocess_training.py",
     )
 
     train = BashOperator(
         task_id="train",
-        bash_command="python scripts/train.py"
+        bash_command="python /opt/airflow/scripts/train.py",
     )
 
     preprocess_test = BashOperator(
         task_id="preprocess_test",
-        bash_command="python scripts/preprocess_test.py"
+        bash_command="python /opt/airflow/scripts/preprocess_test.py",
     )
 
     predict = BashOperator(
         task_id="predict",
-        bash_command="python scripts/predict.py"
+        bash_command="python /opt/airflow/scripts/predict.py",
     )
 
     preprocess_train >> train >> preprocess_test >> predict
