@@ -36,6 +36,6 @@ Assuming the user already has Docker installed, run the following commands in or
 - docker compose logs -f airflow-scheduler  # Streams the logs from the scheduler in real time
 ```
 
-Once the containers are up, you can access the Airflow UI at http://localhost:8080. The username is march and password is madness. 
+Once the containers are up, the user can access the Airflow UI at http://localhost:8080. The username is march and password is madness. 
 
 <img width="1506" height="810" alt="Image" src="https://github.com/user-attachments/assets/d3ace428-37f2-4e07-931c-0b611d3aefc0" />
