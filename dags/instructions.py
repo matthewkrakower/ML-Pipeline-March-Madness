@@ -10,13 +10,13 @@ default_args = {
 }
 
 with DAG(
-    dag_id="ml_pipeline_simple",
-    description="Run ML pipeline scripts in order",
+    dag_id="march_madness_predictions",
+    description="Run march madness modeling pipeline",
     default_args=default_args,
     start_date=datetime(2025, 8, 1),
     schedule_interval=None,   
     catchup=False,
-    tags=["ml", "pipeline"],
+    tags=["ml", "pipeline", "march madness"],
 ) as dag:
 
     preprocess_train = BashOperator(
