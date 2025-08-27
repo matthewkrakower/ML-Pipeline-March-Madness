@@ -35,7 +35,7 @@ Assuming the user already has Docker installed, run the following commands in or
 
 Once the containers are up, you can access the Airflow UI at http://localhost:8080. The username is march and password is madness. 
 
-
+<img width="1506" height="810" alt="Image" src="https://github.com/user-attachments/assets/d3ace428-37f2-4e07-931c-0b611d3aefc0" />
 
 
 This pipeline starts with the csv file 'MM_KP' in the 'data' folder. 
