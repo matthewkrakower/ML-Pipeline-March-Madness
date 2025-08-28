@@ -6,7 +6,7 @@ There are four tasks in this pipeline, all falling in the folder ```preprocess_t
 Defines how Airflow runs in containers by configuring shared settings, volumes, and services-airflow-init (DB/user setup), airflow-webserver (UI), airflow-scheduler (task execution), and airflow-cli (command line access).
 
 ## Dockerfile
-Builds a custom Airflow image by installing dependencies from requirements.txt and baking in the DAG and preprocessing scripts so they’re always available in the container.
+Builds a custom Airflow image by installing dependencies from ```requirements.txt``` and baking in the DAG and preprocessing scripts so they’re always available in the container.
 
 # Below are the four tasks:
 
