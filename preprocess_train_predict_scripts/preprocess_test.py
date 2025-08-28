@@ -53,55 +53,15 @@ mmkp = mmkp.drop(columns=['W-L'])
 mmkp['Team_Name'] = pd.factorize(mmkp['Team'])[0]
 mmkp['Conf'] = pd.factorize(mmkp['Conf'])[0]
 
-#correlation matrix, getting rid of correlated features with lower correlation to target as we go
-# cm = mmkp.drop(columns=['Winner', 'Team', 'ORtgSOS Rank', 'Losses', 'DRtgSOS Rank', 
-#                         'Luck Rank', 'NetRtgSOS Rank', 'NetRtg Rank', 'DRtg Rank',
-#                         'ORtgSOS', 'ORtg Rank', 'DRtgSOS', 'Tourney Seed', 'AdjT Rank',
-#                         'NetRtgSOSNC', 'ORtg', 'NetRtgSOS']).corr()
-
-# #correlation to target
-# target_corr = mmkp.drop(columns='Team').corr()['Winner'].drop('Winner')
-
-# #trying to make it into a table so i can see each variable, their corr with target variable, and corr with each other
-# pairs = cm.unstack().reset_index()
-# pairs.columns = ['Variable 1', 'Variable 2', 'Correlation']
-
-# #drop duplicates
-# pairs = pairs.drop_duplicates(subset=['Correlation'])
-
-# #filter correlations with magnitude >= 0.8
-# greaterthanNine = pairs[pairs['Correlation'].abs() >= 0.8]
-
-# #correlation to target for each
-# greaterthanNine['Var1 C-Target'] = greaterthanNine['Variable 1'].map(target_corr)
-# greaterthanNine['Var2 C-Target'] = greaterthanNine['Variable 2'].map(target_corr)
-
-# #sort by magnitude
-# greaterthanNine = greaterthanNine.sort_values(by='Correlation', key=np.abs, ascending=False)
-
-# greaterthanNine = pd.DataFrame(greaterthanNine[['Variable 1', 'Var1 C-Target', 'Variable 2', 'Var2 C-Target', 'Correlation']])
-
-#all of these are above 0.9
-#based on this, drop:
-#ORtgSOS Rank (keep NetRtgSOS Rank)
-#Losses (keep Win Percentage)
-#DRtgSOS Rank (keep NetRtgSOS Rank)
-#Luck Rank (keep Luck)
-#NetRtgSOS Rank (keep NetRtgSOS)
-#NetRtg Rank (keep NetRtg)
-#DRtg Rank (keep DRtg)
-#ORtgSOS (keep NetRtgSOS)
-#ORtg Rank (keep ORtg)
-#DRtgSOS (keep NetRtgSOS)
-#all of these are above 0.8:
-#i say keep win percentage bc different teams might play different amounts of games
-#Tourney Seed (keep NetRtg)
-#AdjT Rank (keep AdjT)
-#NetRtgSOSNC (keep NetRtgSOSNC Rank)
-#ORtg (keep NetRtg)
-#NetRtgSOS (keep NetRtg)
+output_path = "/opt/airflow/data/mmkp_test_team_col.csv"
+mmkp['Team'].to_csv(output_path, index=False)
 
 #save the cleaned dataframe to CSV
+
+mmkp_train = pd.read_csv('/opt/airflow/data/mmkp_preprocessed_train.csv') #CHANGE THIS
+mmkp_train_cols = mmkp_train.columns
+
+mmkp = mmkp[mmkp_train_cols]
 
 output_path = "/opt/airflow/data/mmkp_preprocessed_test.csv"
 mmkp.to_csv(output_path, index=False)

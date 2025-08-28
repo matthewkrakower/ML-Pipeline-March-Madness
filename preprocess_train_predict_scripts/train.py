@@ -12,11 +12,7 @@ import joblib
 
 mmkp = pd.read_csv("/opt/airflow/data/mmkp_preprocessed_train.csv")
 
-X = mmkp.drop(columns=['Winner', 'Team', 'ORtgSOS Rank', 'Losses', 'DRtgSOS Rank', 
-                        'Luck Rank', 'NetRtgSOS Rank', 'NetRtg Rank', 'DRtg Rank',
-                        'ORtgSOS', 'ORtg Rank', 'DRtgSOS', 'Tourney Seed', 'AdjT Rank',
-                        'NetRtgSOSNC', 'ORtg', 'NetRtgSOS', 'AdjT', 'Luck', 
-                        'NetRtgSOSNC Rank', 'Year'])
+X = mmkp.drop(columns=['Winner'])
 y = mmkp['Winner']
 
 scaler = StandardScaler()

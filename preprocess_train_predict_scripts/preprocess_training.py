@@ -852,54 +852,28 @@ mmkp = mmkp.drop(columns=['W-L'])
 mmkp['Team_Name'] = pd.factorize(mmkp['Team'])[0]
 mmkp['Conf'] = pd.factorize(mmkp['Conf'])[0]
 
-#correlation matrix, getting rid of correlated features with lower correlation to target as we go
-# cm = mmkp.drop(columns=['Winner', 'Team', 'ORtgSOS Rank', 'Losses', 'DRtgSOS Rank', 
-#                         'Luck Rank', 'NetRtgSOS Rank', 'NetRtg Rank', 'DRtg Rank',
-#                         'ORtgSOS', 'ORtg Rank', 'DRtgSOS', 'Tourney Seed', 'AdjT Rank',
-#                         'NetRtgSOSNC', 'ORtg', 'NetRtgSOS']).corr()
+#feature selection by target correlation and collinearity removal
+#numeric features only (exclude target)
+num_cols = mmkp.select_dtypes(include=[np.number]).columns.tolist()
+num_feats = [i for i in num_cols if i != 'Winner']
 
-# #correlation to target
-# target_corr = mmkp.drop(columns='Team').corr()['Winner'].drop('Winner')
+#corr with target
+corr_to_target = mmkp[num_feats].corrwith(mmkp['Winner']).abs().sort_values(ascending=False)
+keeping = corr_to_target[corr_to_target >= 0.1].index.tolist()
 
-# #trying to make it into a table so i can see each variable, their corr with target variable, and corr with each other
-# pairs = cm.unstack().reset_index()
-# pairs.columns = ['Variable 1', 'Variable 2', 'Correlation']
+#remove collinearity
+cm = mmkp[keeping].corr().abs()
+kept = []
+for feat in corr_to_target.index:
+    if feat not in keeping:
+        continue
+    if all((abs(cm.loc[feat, k]) < 0.8) for k in kept):
+        kept.append(feat)
 
-# #drop duplicates
-# pairs = pairs.drop_duplicates(subset=['Correlation'])
+#create ideal df
+cols_to_save = kept + ['Winner']
+mmkp_ideal = mmkp[cols_to_save].copy()
 
-# #filter correlations with magnitude >= 0.8
-# greaterthanNine = pairs[pairs['Correlation'].abs() >= 0.8]
-
-# #correlation to target for each
-# greaterthanNine['Var1 -Target'] = greaterthanNine['Variable 1'].map(target_corr)
-# greaterthanNine['Var2 C-Target'] = greaterthanNine['Variable 2'].map(target_corr)
-
-# #sort by magnitude
-# greaterthanNine = greaterthanNine.sort_values(by='Correlation', key=np.abs, ascending=False)
-
-# greaterthanNine = pd.DataFrame(greaterthanNine[['Variable 1', 'Var1 C-Target', 'Variable 2', 'Var2 C-Target', 'Correlation']])
-
-#all of these are above 0.9
-#based on this, drop:
-#ORtgSOS Rank (keep NetRtgSOS Rank)
-#Losses (keep Win Percentage)
-#DRtgSOS Rank (keep NetRtgSOS Rank)
-#Luck Rank (keep Luck)
-#NetRtgSOS Rank (keep NetRtgSOS)
-#NetRtg Rank (keep NetRtg)
-#DRtg Rank (keep DRtg)
-#ORtgSOS (keep NetRtgSOS)
-#ORtg Rank (keep ORtg)
-#DRtgSOS (keep NetRtgSOS)
-#all of these are above 0.8:
-#i say keep win percentage bc different teams might play different amounts of games
-#Tourney Seed (keep NetRtg)
-#AdjT Rank (keep AdjT)
-#NetRtgSOSNC (keep NetRtgSOSNC Rank)
-#ORtg (keep NetRtg)
-#NetRtgSOS (keep NetRtg)
-
-#save the cleaned dataframe to CSV
+# save
 output_path = '/opt/airflow/data/mmkp_preprocessed_train.csv'
-mmkp.to_csv(output_path, index=False)
+mmkp_ideal.to_csv(output_path, index=False)
