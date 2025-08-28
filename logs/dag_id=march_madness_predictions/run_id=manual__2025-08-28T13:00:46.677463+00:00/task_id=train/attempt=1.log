@@ -1,0 +1,26 @@
+[2025-08-28T13:00:56.764+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-08-28T13:00:56.767+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: march_madness_predictions.train manual__2025-08-28T13:00:46.677463+00:00 [queued]>
+[2025-08-28T13:00:56.769+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: march_madness_predictions.train manual__2025-08-28T13:00:46.677463+00:00 [queued]>
+[2025-08-28T13:00:56.769+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 2
+[2025-08-28T13:00:56.774+0000] {taskinstance.py:2888} INFO - Executing <Task(BashOperator): train> on 2025-08-28 13:00:46.677463+00:00
+[2025-08-28T13:00:56.776+0000] {standard_task_runner.py:72} INFO - Started process 248 to run task
+[2025-08-28T13:00:56.777+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'march_madness_predictions', 'train', 'manual__2025-08-28T13:00:46.677463+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/instructions.py', '--cfg-path', '/tmp/tmp8p3f910e']
+[2025-08-28T13:00:56.778+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask train
+[2025-08-28T13:00:56.791+0000] {task_command.py:467} INFO - Running <TaskInstance: march_madness_predictions.train manual__2025-08-28T13:00:46.677463+00:00 [running]> on host b7e162002360
+[2025-08-28T13:00:56.808+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='march_madness_predictions' AIRFLOW_CTX_TASK_ID='train' AIRFLOW_CTX_EXECUTION_DATE='2025-08-28T13:00:46.677463+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-08-28T13:00:46.677463+00:00'
+[2025-08-28T13:00:56.808+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-08-28T13:00:56.814+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-08-28T13:00:56.814+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/airflow/scripts/train.py']
+[2025-08-28T13:00:56.817+0000] {subprocess.py:86} INFO - Output:
+[2025-08-28T13:00:57.345+0000] {subprocess.py:93} INFO - Fitting 5 folds for each of 30 candidates, totalling 150 fits
+[2025-08-28T13:00:59.900+0000] {subprocess.py:93} INFO - Best Parameters: {'subsample': 1.0, 'reg_lambda': 1, 'reg_alpha': 0.1, 'n_estimators': 100, 'max_depth': 3, 'learning_rate': 0.1, 'gamma': 0, 'colsample_bytree': 0.6}
+[2025-08-28T13:00:59.900+0000] {subprocess.py:93} INFO - Mean MSE: 0.016804 with Std of 0.002194
+[2025-08-28T13:00:59.901+0000] {subprocess.py:93} INFO - Mean MAE: 0.090295
+[2025-08-28T13:00:59.901+0000] {subprocess.py:93} INFO - Mean RMSE: 0.129356
+[2025-08-28T13:00:59.901+0000] {subprocess.py:93} INFO - Mean R²: 0.653505
+[2025-08-28T13:01:00.155+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-08-28T13:01:00.163+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-08-28T13:01:00.164+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=march_madness_predictions, task_id=train, run_id=manual__2025-08-28T13:00:46.677463+00:00, execution_date=20250828T130046, start_date=20250828T130056, end_date=20250828T130100
+[2025-08-28T13:01:00.191+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-08-28T13:01:00.199+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-08-28T13:01:00.200+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

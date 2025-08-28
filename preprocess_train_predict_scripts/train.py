@@ -8,6 +8,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import ElasticNet
 from xgboost import XGBRegressor
 import joblib
+import datetime
 
 
 mmkp = pd.read_csv("/opt/airflow/data/mmkp_preprocessed_train.csv")
@@ -70,13 +71,15 @@ print(f"Mean MAE: {np.mean(mae_scores):.6f}")
 print(f"Mean RMSE: {np.mean(rmse_scores):.6f}")
 print(f"Mean R²: {np.mean(r2_scores):.6f}")
 
-#Why the Mean is Trustworthy in This Case:
-#1.	RKF already reduces variance by averaging across multiple shuffled train/test splits, unlike a single K-Fold split which may be biased depending on the fold.
-#2.	A low std means stability: Your model’s performance doesn’t vary much across splits. So, the mean MSE is capturing a consistent performance signal — not one driven by outliers or unlucky folds.
-#3.	Cross-validation mean approximates true error: With enough folds and repeats, the mean MSE approximates how your model would perform on unseen data.
+results = {
+    "Mean MSE": [np.mean(mse_scores)],
+    "Mean MAE": [np.mean(mae_scores)],
+    "Mean RMSE": [np.mean(rmse_scores)],
+    "Mean R²": [np.mean(r2_scores)]
+}
+
+df_results = pd.DataFrame(results)
+year = datetime.datetime.now().year
+df_results.to_csv(f"/opt/airflow/results/eval_metrics_{year}.csv", index=False)
 
 joblib.dump(model, "/opt/airflow/models/xgb_model.pkl")
-
-loaded_model = joblib.load("/opt/airflow/models/xgb_model.pkl")
-
-preds_loaded = loaded_model.predict(X_scaled)
