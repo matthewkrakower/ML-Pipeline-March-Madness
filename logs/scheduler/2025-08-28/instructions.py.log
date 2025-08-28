@@ -2148,3 +2148,46 @@
 [2025-08-28T13:05:10.291+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:05:10.291+0000] {dag.py:3239} INFO - Sync 1 DAGs
 [2025-08-28T13:05:10.302+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:05:10.302+0000] {dag.py:4180} INFO - Setting next_dagrun for march_madness_predictions to 2026-03-17 00:00:00+00:00, run_after=2027-03-17 00:00:00+00:00
 [2025-08-28T13:05:10.311+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/instructions.py took 0.065 seconds
+[2025-08-28T13:05:40.521+0000] {processor.py:186} INFO - Started process (PID=521) to work on /opt/airflow/dags/instructions.py
+[2025-08-28T13:05:40.522+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/instructions.py for tasks to queue
+[2025-08-28T13:05:40.524+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:05:40.523+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/instructions.py
+[2025-08-28T13:05:40.533+0000] {processor.py:925} INFO - DAG(s) 'march_madness_predictions' retrieved from /opt/airflow/dags/instructions.py
+[2025-08-28T13:05:40.548+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:05:40.548+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-08-28T13:05:40.557+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:05:40.557+0000] {dag.py:4180} INFO - Setting next_dagrun for march_madness_predictions to 2026-03-17 00:00:00+00:00, run_after=2027-03-17 00:00:00+00:00
+[2025-08-28T13:05:40.567+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/instructions.py took 0.051 seconds
+[2025-08-28T13:06:10.738+0000] {processor.py:186} INFO - Started process (PID=522) to work on /opt/airflow/dags/instructions.py
+[2025-08-28T13:06:10.739+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/instructions.py for tasks to queue
+[2025-08-28T13:06:10.741+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:10.740+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/instructions.py
+[2025-08-28T13:06:10.750+0000] {processor.py:925} INFO - DAG(s) 'march_madness_predictions' retrieved from /opt/airflow/dags/instructions.py
+[2025-08-28T13:06:10.764+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:10.764+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-08-28T13:06:10.776+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:10.775+0000] {dag.py:4180} INFO - Setting next_dagrun for march_madness_predictions to 2026-03-17 00:00:00+00:00, run_after=2027-03-17 00:00:00+00:00
+[2025-08-28T13:06:10.787+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/instructions.py took 0.053 seconds
+[2025-08-28T13:06:39.209+0000] {processor.py:186} INFO - Started process (PID=48) to work on /opt/airflow/dags/instructions.py
+[2025-08-28T13:06:39.209+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/instructions.py for tasks to queue
+[2025-08-28T13:06:39.210+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.210+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/instructions.py
+[2025-08-28T13:06:39.216+0000] {processor.py:925} INFO - DAG(s) 'march_madness_predictions' retrieved from /opt/airflow/dags/instructions.py
+[2025-08-28T13:06:39.328+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.327+0000] {override.py:1900} INFO - Created Permission View: can delete on DAG:march_madness_predictions
+[2025-08-28T13:06:39.331+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.331+0000] {override.py:1900} INFO - Created Permission View: can edit on DAG:march_madness_predictions
+[2025-08-28T13:06:39.334+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.334+0000] {override.py:1900} INFO - Created Permission View: can read on DAG:march_madness_predictions
+[2025-08-28T13:06:39.340+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.340+0000] {override.py:1900} INFO - Created Permission View: can create on DAG Run:march_madness_predictions
+[2025-08-28T13:06:39.342+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.342+0000] {override.py:1900} INFO - Created Permission View: can delete on DAG Run:march_madness_predictions
+[2025-08-28T13:06:39.345+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.345+0000] {override.py:1900} INFO - Created Permission View: can read on DAG Run:march_madness_predictions
+[2025-08-28T13:06:39.361+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.361+0000] {override.py:1900} INFO - Created Permission View: menu access on DAG Run:march_madness_predictions
+[2025-08-28T13:06:39.367+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.366+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-08-28T13:06:39.377+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.377+0000] {dag.py:3262} INFO - Creating ORM DAG for march_madness_predictions
+[2025-08-28T13:06:39.396+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:06:39.395+0000] {dag.py:4180} INFO - Setting next_dagrun for march_madness_predictions to 2026-03-17 00:00:00+00:00, run_after=2027-03-17 00:00:00+00:00
+[2025-08-28T13:06:39.420+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/instructions.py took 0.214 seconds
+[2025-08-28T13:07:14.214+0000] {processor.py:186} INFO - Started process (PID=233) to work on /opt/airflow/dags/instructions.py
+[2025-08-28T13:07:14.215+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/instructions.py for tasks to queue
+[2025-08-28T13:07:14.216+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:07:14.216+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/instructions.py
+[2025-08-28T13:07:14.223+0000] {processor.py:925} INFO - DAG(s) 'march_madness_predictions' retrieved from /opt/airflow/dags/instructions.py
+[2025-08-28T13:07:14.234+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:07:14.233+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-08-28T13:07:14.243+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:07:14.243+0000] {dag.py:4180} INFO - Setting next_dagrun for march_madness_predictions to 2026-03-17 00:00:00+00:00, run_after=2027-03-17 00:00:00+00:00
+[2025-08-28T13:07:14.250+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/instructions.py took 0.040 seconds
+[2025-08-28T13:07:45.330+0000] {processor.py:186} INFO - Started process (PID=512) to work on /opt/airflow/dags/instructions.py
+[2025-08-28T13:07:45.332+0000] {processor.py:914} INFO - Processing file /opt/airflow/dags/instructions.py for tasks to queue
+[2025-08-28T13:07:45.339+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:07:45.339+0000] {dagbag.py:588} INFO - Filling up the DagBag from /opt/airflow/dags/instructions.py
+[2025-08-28T13:07:45.360+0000] {processor.py:925} INFO - DAG(s) 'march_madness_predictions' retrieved from /opt/airflow/dags/instructions.py
+[2025-08-28T13:07:45.377+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:07:45.377+0000] {dag.py:3239} INFO - Sync 1 DAGs
+[2025-08-28T13:07:45.388+0000] {logging_mixin.py:190} INFO - [2025-08-28T13:07:45.388+0000] {dag.py:4180} INFO - Setting next_dagrun for march_madness_predictions to 2026-03-17 00:00:00+00:00, run_after=2027-03-17 00:00:00+00:00
+[2025-08-28T13:07:45.397+0000] {processor.py:208} INFO - Processing /opt/airflow/dags/instructions.py took 0.073 seconds
