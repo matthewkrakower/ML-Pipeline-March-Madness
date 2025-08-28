@@ -38,3 +38,4 @@ Assuming the user already has Docker installed, run the following commands in or
 
 Once the containers are up, the user can access the Airflow UI at http://localhost:8080. The username is march and password is madness. 
 
+<img width="1508" height="645" alt="Image" src="https://github.com/user-attachments/assets/7d14ea9e-0305-466e-a09d-9fbaa66ddfab" />
