@@ -14,7 +14,7 @@ with DAG(
     description="Run march madness modeling pipeline",
     default_args=default_args,
     start_date=datetime(2025, 8, 1),
-    schedule_interval=None,   
+    schedule_interval="0 0 17 3 *",
     catchup=False,
     tags=["ml", "pipeline", "march madness"],
 ) as dag:
