@@ -25,7 +25,7 @@ This script extracts the model that was trained in the second task and predicts 
 # Run The Application
 Assuming the user already has Docker installed, run the following commands in order:
 ```
-- docker compose down -v --remove-orphans   # Cleans up any existing containers, networks, and volumes  
+- docker compose down -v --remove-orphans   # OPTIONAL IF USER HAS NO CONTAINERS RUNNING: Cleans up any existing containers, networks, and volumes 
 - docker compose build                      # Builds the Docker images defined in your Dockerfile  
 - docker compose run --rm airflow-init      # Initializes Airflow (sets up the database and create the default user)  
 - docker compose up -d airflow-webserver airflow-scheduler   # Starts the Airflow webserver and scheduler in the background  
