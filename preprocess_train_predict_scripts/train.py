@@ -82,4 +82,4 @@ df_results = pd.DataFrame(results)
 year = datetime.datetime.now().year
 df_results.to_csv(f"/opt/airflow/results/eval_metrics_{year}.csv", index=False)
 
-joblib.dump(model, "/opt/airflow/models/xgb_model.pkl")
+joblib.dump(model, f"/opt/airflow/models/xgb_model_{year}.pkl")
