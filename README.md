@@ -14,13 +14,13 @@ Builds a custom Airflow image by installing dependencies from ```requirements.tx
 This script does the preprocessing for the raw data file ```MM_KP.csv```, pulled directly from KenPom. This includes all KenPom metrics for every year back to its creation in 2002. The script cleans the file, feature engineers new columns like 'Tourney Seed' or 'Win Percentage', and manually fills the target column 'Winner'. The file also has code that calculates correlations between features and targets, along with covariance between features. The training/testing dataset uses only features that have a correlation magnitude with the target of 0.1 or higher. Additionally, for any pair of features with a correlation magnitude at or above 0.8, the feature with the weaker correlation to the target variable is dropped. Until next year's March Madness bracket is announced, 2002-2024 is used for training, and 2025 is used as the test. 
 
 ## Task 2: train.py
-This script trains and tunes an XGBoost model on March Madness data using ```RandomizedSearchCV```, validates it with repeated k-fold cross-validation, evaluates performance metrics, and saves the best model with joblib. It also scales all features accordingly. For the current iteration, the training has resulted in the optimal MSE of 0.016804. The MAE, RMSE, and R^2 values are 0.090295, 0.129356, and 0.653505, respectively. These values can be found 
+This script trains and tunes an XGBoost model on March Madness data using ```RandomizedSearchCV```, validates it with repeated k-fold cross-validation, evaluates performance metrics, and saves the best model with joblib. It also scales all features accordingly. For the current iteration, the training has resulted in the optimal MSE of 0.016804. The MAE, RMSE, and R^2 values are 0.090295, 0.129356, and 0.653505, respectively. These values can be found in ```eval_metrics_2025``` in the ```results``` folder. 
 
 ## Task 3: preprocess_test.py
 This script has the same function as ```preprocess_training.py```, preprocessing only for 2025. 
 
 ## Task 4: predict.py
-This script extracts the model that was trained in the second task and predicts on the test set. It saves the output predictions as ```predictions.csv``` in the ```results``` folder. 
+This script extracts the model that was trained in the second task and predicts on the test set. It saves the output predictions as ```predictions_2025.csv``` (for this year) in the ```results``` folder. 
 
 # Run The Application
 Assuming the user already has Docker installed, run the following commands in order:
