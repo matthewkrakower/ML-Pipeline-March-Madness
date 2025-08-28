@@ -2179,3 +2179,32 @@ File Path                          PID    Runtime      # DAGs    # Errors  Last 
 ---------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
 /opt/airflow/dags/instructions.py                           1           0  0.11s           2025-08-28T15:36:17                      12
 ================================================================================
+[2025-08-28T15:36:54.497+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                          PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+---------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/instructions.py                           1           0  0.11s           2025-08-28T15:36:47                      12
+================================================================================
+[2025-08-28T15:40:15.851+0000] {manager.py:483} INFO - Processing files using up to 1 processes at a time 
+[2025-08-28T15:40:15.851+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2025-08-28T15:40:15.852+0000] {manager.py:485} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-08-28T15:40:15.852+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2025-08-28T15:40:15.855+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2025-08-28T15:40:16.225+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                          PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+---------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/instructions.py                           1           0  0.31s           2025-08-28T15:40:16                      45
+================================================================================
+[2025-08-28T15:40:47.982+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                          PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+---------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/instructions.py                           1           0  0.11s           2025-08-28T15:40:47                      12
+================================================================================
