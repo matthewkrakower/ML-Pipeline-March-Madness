@@ -15,12 +15,13 @@ X_test = test_df.drop(columns=['Winner'], errors="ignore")
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X_test) 
 
-model = joblib.load("/opt/airflow/models/xgb_model.pkl")
+year = datetime.datetime.now().year
+
+model = joblib.load(f"/opt/airflow/models/xgb_model_{year}.pkl")
 
 preds = model.predict(X_test)
 
 out = test_df.copy()
 out["prediction"] = preds
 out["Team"] = team_col['Team']
-year = datetime.datetime.now().year
 out.to_csv(f"/opt/airflow/results/predictions_{year}.csv", index=False)
